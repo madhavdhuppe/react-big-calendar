@@ -63,6 +63,7 @@ let propTypes = {
   getDrilldownView: PropTypes.func.isRequired,
 
   dateFormat,
+  disableEventLimit: PropTypes.bool,
 
   weekdayFormat: dateFormat,
   popup: PropTypes.bool,
@@ -165,6 +166,7 @@ class MonthView extends React.Component {
       selected,
       date,
       longPressThreshold,
+      disableEventLimit,
     } = this.props
 
     const { needLimitMeasure, rowLimit } = this.state
@@ -182,7 +184,7 @@ class MonthView extends React.Component {
         date={date}
         range={week}
         events={events}
-        maxRows={rowLimit}
+        maxRows={disableEventLimit ? Infinity : rowLimit}
         selected={selected}
         selectable={selectable}
         messages={messages}
